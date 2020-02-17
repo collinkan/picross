@@ -8,6 +8,16 @@ class puzzle:
         self.row_hints = row_hints
         self.col_hints = col_hints
 
-    def add(self) -> None:
-        return
+    def get_grid(self) -> list:
+        return self.grid
+
+    def get_solution(self) -> list:
+        return self.solution
+
+    def get_row_hints(self) -> list:
+        return self.row_hints
+
+    def get_col_hints(self) -> list:
+        return self.col_hints
+        
     
