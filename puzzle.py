@@ -20,4 +20,6 @@ class puzzle:
     def get_col_hints(self) -> list:
         return self.col_hints
         
-    
+    def cross(self, x: int, y: int) -> None:
+        if self.get_grid()[x][y] == 0: self.grid[x][y] = 1
+        if self.get_grid()[x][y] == 1: self.grid[x][y] = 0
