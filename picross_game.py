@@ -1,6 +1,5 @@
 #Collin Kan
 
-from tkinter import *
 from puzzle import *
 
 solution = [[0,0,1,0,0],
@@ -14,5 +13,4 @@ rhints = [[1],
           [1],
           [1]]
 chints = [[],[1],[5],[1],[]]
-
 pzl = puzzle(solution,rhints,chints)
