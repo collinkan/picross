@@ -7,6 +7,7 @@ class puzzle:
         self.solution = solution
         self.row_hints = row_hints
         self.col_hints = col_hints
+        self.solved = False
 
     def get_grid(self) -> list:
         return self.grid
@@ -27,4 +28,11 @@ class puzzle:
     def mark(self, x: int, y:int) -> None:
         if self.get_grid()[x][y] == 0: self.grid[x][y] = 2
         if self.get_grid()[x][y] == 2: self.grid[x][y] = 0
+
+    def is_solved(self) -> bool:
+        for i in range(len(self.get_grid())):
+            for j in range(len(self.get_grid()[i])):
+                if self.get_grid()[i][j] != self.get_solution()[i][j]:
+                    return False
+        return True
 
