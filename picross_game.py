@@ -14,3 +14,6 @@ rhints = [[1],
           [1]]
 chints = [[],[1],[5],[1],[]]
 pzl = puzzle(solution,rhints,chints)
+
+def game_loop() -> None:
+    while()
