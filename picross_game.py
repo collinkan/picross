@@ -20,6 +20,13 @@ def game_loop(pzl: puzzle) -> None:
     print("?")
     while(pzl.solved() == False):
         print(np.matrix(pzl.grid))
-        input("Hi")
+        user_input(pzl)
+
+def user_input(pzl: puzzle) -> None:
+    move = [ int(x) for x in input("Row and Column (x,y): ").split(",") ]
+    if move[0] in range(1,6) and move[1] in range(1,6):
+        pzl.select(move[0] - 1, move[1] - 1)
+    else: print("Invalid square, try again.\n")
+
 
 game_loop(pzl)
