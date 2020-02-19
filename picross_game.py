@@ -21,11 +21,13 @@ class PicrossGame:
     def __init__(self, pzl: puzzle):
         self.pzl = pzl
 
+    def get_pzl(self) -> puzzle:
+        return self.pzl
+
     def game_loop(self) -> None:
-        print("?")
         while(pzl.solved() == False):
             print(np.matrix(pzl.grid))
-            user_input(pzl)
+            self.user_input()
 
     def user_input(self) -> None:
         move = [ int(x) for x in input("Row and Column (x,y): ").split(",") ]
@@ -34,4 +36,5 @@ class PicrossGame:
         else: print("Invalid square, try again.\n")
 
 
-game_loop(pzl)
+pg = PicrossGame(pzl)
+pg.game_loop()
