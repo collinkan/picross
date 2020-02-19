@@ -32,9 +32,7 @@ class PicrossGame:
     def user_input(self) -> None:
         move = [ int(x) for x in input("Row and Column (x,y): ").split(",") ]
         if move[0] in range(1, len(self.get_pzl().get_grid())+1) and move[1] in range(1, len(self.get_pzl().get_grid())+1):
-            print(self.get_pzl().get_grid()[move[0] - 1][move[1] - 1])
             self.get_pzl().select(move[0] - 1, move[1] - 1)
-            print(self.get_pzl().get_grid()[move[0] - 1][move[1] - 1])
         else: print("Invalid square, try again.\n")
 
 
