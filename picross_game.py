@@ -28,6 +28,7 @@ class PicrossGame:
         while(self.get_pzl().solved() == False):
             print(np.matrix(self.get_pzl().get_grid()))
             self.user_input()
+        print("You solved the puzzle!")
 
     def user_input(self) -> None:
         move = [ int(x) for x in input("Row and Column (x,y): ").split(",") ]
