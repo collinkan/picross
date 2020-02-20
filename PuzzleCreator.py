@@ -1,7 +1,16 @@
 #Collin Kan
 
-from Puzzle import *
 import numpy as np
 import imageio
 
-imageio.imread("PuzzleImages\\Cross.png")
+def PuzzleCreator(img: str) -> list:
+    img = imageio.imread(img).tolist()
+    solution = [[] for pixel in img]
+
+    for i in range(len(img)):
+        for j in range(len(img)):
+            solution[i].append(int(img[i][j][0] == 0))
+
+    return solution
+
+PuzzleCreator("PuzzleImages\\Cross.png")
