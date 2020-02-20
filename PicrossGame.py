@@ -30,18 +30,7 @@ class PicrossGame:
         else: print("Invalid square, try again.\n")
 
 
-solution = [[0,0,1,0,0],
-            [0,1,1,1,0],
-            [0,0,1,0,0],
-            [0,0,1,0,0],
-            [0,0,1,0,0]]
-rhints = [[1],
-          [3],
-          [1],
-          [1],
-          [1]]
-chints = [[0],[1],[5],[1],[0]]
-pzl = Puzzle(solution,rhints,chints)
+pzl = Puzzle("Cross.png")
 
 pg = PicrossGame(pzl)
 pg.game_loop()
