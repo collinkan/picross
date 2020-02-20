@@ -3,7 +3,7 @@
 import numpy as np
 import imageio
 
-def PuzzleCreator(img: str) -> list:
+def solution_maker(img: str) -> list:
     img = imageio.imread(img).tolist()
     solution = [[] for pixel in img]
 
@@ -13,4 +13,3 @@ def PuzzleCreator(img: str) -> list:
 
     return solution
 
-PuzzleCreator("PuzzleImages\\Cross.png")
