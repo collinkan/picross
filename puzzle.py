@@ -1,12 +1,15 @@
 #Collin Kan
 
+import PuzzleCreator as pc
+
 class Puzzle:
 
-    def __init__(self, solution: list, row_hints: list, col_hints: list):
-        self.grid = [[0 for n in solution[0]] for r in solution]
-        self.solution = solution
-        self.row_hints = row_hints
-        self.col_hints = col_hints
+    def __init__(self, imgname: str):
+        self.imgname = imgname
+        self.solution = pc.solution_maker(self.imgname)
+        self.grid = [[0 for n in self.solution[0]] for r in self.solution]
+        self.row_hints = pc.row_hints_maker(self.solution)
+        self.col_hints = pc.col_hints_maker(self.solution)
 
     def get_grid(self) -> list:
         return self.grid
