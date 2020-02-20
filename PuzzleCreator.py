@@ -27,13 +27,20 @@ def row_hints_maker(solution: list) -> list:
                 row_hints[i].append(counter)
             j +=1
 
-    print(row_hints) 
-        
+    return row_hints
 
-#sol = solution_maker("Cross.png")
-sol = [[0,0,1,0,0],
-        [0,1,1,1,0],
-        [1,1,0,1,1],
-        [0,0,1,0,0],
-        [0,0,1,0,0]]
-row_hints_maker(sol)
+def col_hints_maker(solution: list) -> list:
+    col_hints = [[] for n in solution[0]]
+
+    for j in range(len(solution[0])):
+        i = 0
+        while(i < len(solution)):
+            if(solution[i][j] == 1):
+                counter = 0
+                while(i < len(solution) and solution[i][j] == 1):
+                    counter +=1
+                    i += 1 
+                col_hints[j].append(counter)
+            i +=1
+
+    return col_hints
