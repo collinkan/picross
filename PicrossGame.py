@@ -17,6 +17,7 @@ class PicrossGame:
             print(np.matrix(self.get_pzl().get_row_hints()))
             print(np.matrix(self.get_pzl().get_grid()))
             self.user_input()
+        print(np.matrix(self.get_pzl().get_grid()))
         print("You solved the Puzzle!")
 
     def user_input(self) -> None:
