@@ -1,6 +1,6 @@
 #Collin Kan
 
-class puzzle:
+class Puzzle:
 
     def __init__(self, solution: list, row_hints: list, col_hints: list):
         self.grid = [[0 for n in solution[0]] for r in solution]
