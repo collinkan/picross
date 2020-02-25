@@ -4,20 +4,23 @@ import pygame
 
 class Button:
 
-    def __init__(self, x: int, y: int, width: int, height: int):
+    pygame.init()
+
+    def __init__(self, x: int, y: int, width: int, height: int, color: tuple, outline: tuple, text=""):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.color = (255,255,255)
-        #self.text = text
+        self.color = color
+        self.outline = outline
+        self.text = text
 
     def draw(self, win: pygame.display) -> None:
-        pygame.draw.rect(win, (0,0,0), (self.x, self.y, self.width, self.height), 0)
+        pygame.draw.rect(win, self.outline, (self.x, self.y, self.width, self.height), 0)
         pygame.draw.rect(win, self.color, (self.x+2, self.y+2, self.width-4, self.height-4))
-        # font = pygame.font.Font('arial', 60)
-        # text = font.render(self.text, 1, (0,0,0))
-        # win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
+        font = pygame.font.Font('freesansbold.ttf', 60)
+        text = font.render(self.text, 1, (0,0,0))
+        win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
     def toggle(self) -> None:
         if self.color == (0,0,0): self.color = (255,255,255)
