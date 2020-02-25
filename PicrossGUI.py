@@ -16,7 +16,7 @@ class PicrossGUI:
             for j in range(len(self.get_pzl().get_grid()[0])):
                 x = 300 + (dim * i)
                 y = 300 + (dim * j)
-                square = Button(x,y,dim,dim)
+                square = Button(x,y,dim)
                 self.buttons[i].append(square)
 
     def get_pzl(self) -> Puzzle:
@@ -35,11 +35,11 @@ class PicrossGUI:
 
     def drawRowHints(self) -> None:
         for i in range(len(self.get_buttons())):
-            pygame.draw.rect(self.win, (0,204,136), (0, 300 + self.get_buttons()[i][0].height*i, 298, self.get_buttons()[i][0].height), 0)
+            pygame.draw.rect(self.win, (0,204,136), (0, 302 + self.get_buttons()[i][0].dim*i, 298, self.get_buttons()[i][0].dim - 4), 0)
 
     def drawColHints(self) -> None:
         for i in range(len(self.get_buttons())):
-            pygame.draw.rect(self.win, (0,204,136), (300 + self.get_buttons()[i][0].height*i, 0, self.get_buttons()[i][0].height, 298), 0)
+            pygame.draw.rect(self.win, (0,204,136), (302 + self.get_buttons()[i][0].dim*i, 0, self.get_buttons()[i][0].dim - 4, 298), 0)
 
     def updateWin(self) -> None:
         self.win.fill((102,255,204))
