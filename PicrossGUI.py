@@ -8,7 +8,7 @@ class PicrossGUI:
 
     def __init__(self, pzl: Puzzle):
         self.pzl = pzl
-        self.win = pygame.display.set_mode((800,900))
+        self.win = pygame.display.set_mode((802,900))
         self.buttons = [[] for r in self.get_pzl().get_grid()]
 
         dim = 500 / len(self.get_pzl().get_grid())
@@ -33,9 +33,19 @@ class PicrossGUI:
             for j in range(len(self.get_buttons()[i])):
                 self.get_buttons()[i][j].draw(self.win)
 
+    def drawRowHints(self) -> None:
+        for i in range(len(self.get_buttons())):
+            pygame.draw.rect(self.win, (0,204,136), (0, 300 + self.get_buttons()[i][0].height*i, 298, self.get_buttons()[i][0].height), 0)
+
+    def drawColHints(self) -> None:
+        for i in range(len(self.get_buttons())):
+            pygame.draw.rect(self.win, (0,204,136), (300 + self.get_buttons()[i][0].height*i, 0, self.get_buttons()[i][0].height, 298), 0)
+
     def updateWin(self) -> None:
-        self.win.fill((255,255,255))
+        self.win.fill((102,255,204))
         self.drawGrid()
+        self.drawRowHints()
+        self.drawColHints()
 
     def game_loop(self) -> None:
         done = False
@@ -48,6 +58,15 @@ class PicrossGUI:
 
                 if event.type == pygame.QUIT:
                     done = True
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    for i in range(len(self.get_buttons())):
+                        for j in range(len(self.get_buttons()[i])):
+                            if self.get_buttons()[i][j].isHover(pos):
+                                self.get_buttons()[i][j].toggle()
+
+
+
 
 pzl = Puzzle("Cross.png")
 pg = PicrossGUI(pzl)
