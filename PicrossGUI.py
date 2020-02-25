@@ -84,7 +84,7 @@ class PicrossGUI:
 
 
 
-pzl = Puzzle("Cross.png")
+pzl = Puzzle("Creeper.png")
 pg = PicrossGUI(pzl)
 pg.game_loop()
                 
