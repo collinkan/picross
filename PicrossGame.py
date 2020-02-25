@@ -32,6 +32,5 @@ class PicrossGame:
 
 
 pzl = Puzzle("Cross.png")
-
 pg = PicrossGame(pzl)
 pg.game_loop()

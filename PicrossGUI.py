@@ -3,7 +3,6 @@
 import pygame
 from Button import *
 from Puzzle import *
-import numpy as np
 
 class PicrossGUI:
 
