@@ -33,7 +33,7 @@ class Button:
             self.selected = True
             self.color = (0,0,0)
 
-    def crossout(self) -> None:
+    def crossout(self, win: pygame.display) -> None:
         if not self.selected and not self.crossed: self.crossed = True
         elif self.crossed: self.crossed = False
 
