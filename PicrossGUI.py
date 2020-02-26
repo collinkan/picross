@@ -11,13 +11,14 @@ class PicrossGUI:
         self.win = pygame.display.set_mode((802,900))
         self.buttons = [[] for r in self.get_pzl().get_grid()]
         self.quit = Button(100,100,100,100,(200,0,0),(0,0,0), "Quit")
+        self.bg = (102,255,204)
 
         dim = 500 / len(self.get_pzl().get_grid())
         for i in range(len(self.get_pzl().get_grid())):
             for j in range(len(self.get_pzl().get_grid()[0])):
                 x = 300 + (dim * j)
                 y = 300 + (dim * i)
-                square = Button(x,y,dim,dim,(255,255,255),(102,255,204))
+                square = Button(x,y,dim,dim,(255,255,255),self.bg)
                 self.buttons[i].append(square)
         pygame.display.set_caption("Collin's Picross")
 
@@ -45,7 +46,7 @@ class PicrossGUI:
             pygame.draw.rect(self.win, (0,204,136), (302 + self.get_buttons()[i][0].width*i, 0, self.get_buttons()[i][0].width - 4, 298), 0)
 
     def updateWin(self) -> None:
-        self.win.fill((102,255,204))
+        self.win.fill(self.bg)
         self.drawGrid()
         self.drawRowHints()
         self.drawColHints()
@@ -84,7 +85,7 @@ class PicrossGUI:
 
 
 
-pzl = Puzzle("SmileTest.png")
+pzl = Puzzle("Creeper.png")
 pg = PicrossGUI(pzl)
 pg.game_loop()
                 
