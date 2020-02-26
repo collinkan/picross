@@ -44,7 +44,8 @@ class PicrossGUI:
             pygame.draw.rect(self.win, (0,204,136),(0, 302 + self.bdim*i, 298, self.bdim - 4), 0)
             for j in range(len(self.get_pzl().get_row_hints()[i])):
                 text = font.render(str(self.get_pzl().get_row_hints()[i][j]), 1, (0,0,0))
-                self.win.blit(text, (298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1), 302 + self.bdim*i))
+                self.win.blit(text, (298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1), 
+                302 + self.bdim*i + + (self.bdim/2 - text.get_width()/2)))
 
     def drawColHints(self) -> None:
         font = pygame.font.Font('freesansbold.ttf', round(200 / len(self.get_pzl().get_grid())))
@@ -52,7 +53,8 @@ class PicrossGUI:
             pygame.draw.rect(self.win, (0,204,136),(302 + self.bdim*i, 0, self.bdim - 4, 298), 0)
             for j in range(len(self.get_pzl().get_col_hints()[i])):
                 text = font.render(str(self.get_pzl().get_col_hints()[i][j]), 1, (0,0,0))
-                self.win.blit(text, (302 + self.bdim*i, 298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1)))
+                self.win.blit(text, (302 + self.bdim*i + + (self.bdim/2 - text.get_width()/2), 
+                298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1)))
 
     def updateWin(self) -> None:
         self.win.fill(self.bg)
@@ -81,7 +83,8 @@ class PicrossGUI:
                             done = True
                         for i in range(len(self.get_buttons())):
                             for j in range(len(self.get_buttons()[0])):
-                                if self.get_buttons()[i][j].isHover(pos):
+                                if (self.get_buttons()[i][j].isHover(pos)
+                                and self.get_buttons()[i][j].crossed == False):
                                     self.get_buttons()[i][j].toggle()
                                     self.get_pzl().select(i, j)
                     
