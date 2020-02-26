@@ -36,7 +36,15 @@ class PicrossGUI:
         for i in range(len(self.get_buttons())):
             for j in range(len(self.get_buttons()[i])):
                 self.get_buttons()[i][j].draw(self.win)
+                if self.get_buttons()[i][j].crossed:
+                    pygame.draw.line(self.win, (75,75,75), 
+                    (self.get_buttons()[i][j].x+self.get_buttons()[i][j].width-2, self.get_buttons()[i][j].y+2),
+                    (self.get_buttons()[i][j].x+2, self.get_buttons()[i][j].y+self.get_buttons()[i][j].height-2), 3)
+                    pygame.draw.line(self.win, (75,75,75), 
+                    (self.get_buttons()[i][j].x+2, self.get_buttons()[i][j].y+2), 
+                    (self.get_buttons()[i][j].x+self.get_buttons()[i][j].width-2, self.get_buttons()[i][j].y+self.get_buttons()[i][j].height-2), 3)
         self.quit.draw(self.win)
+
 
     def drawRowHints(self) -> None:
         font = pygame.font.Font('freesansbold.ttf', round(200 / len(self.get_pzl().get_grid())))
@@ -79,7 +87,6 @@ class PicrossGUI:
 
                     if pygame.mouse.get_pressed() == (1,0,0):
                         if self.quit.isHover(pos):
-                            pygame.quit()
                             done = True
                         for i in range(len(self.get_buttons())):
                             for j in range(len(self.get_buttons()[0])):
@@ -88,11 +95,11 @@ class PicrossGUI:
                                     self.get_buttons()[i][j].toggle()
                                     self.get_pzl().select(i, j)
                     
-                    # if pygame.mouse.get_pressed() == (0,0,1):
-                    #     for i in range(len(self.get_buttons())):
-                    #         for j in range(len(self.get_buttons()[i])):
-                    #             if self.get_buttons()[i][j].isHover(pos):
-                    #                 self.get_buttons()[i][j].toggle()
+                    if pygame.mouse.get_pressed() == (0,0,1):
+                        for i in range(len(self.get_buttons())):
+                            for j in range(len(self.get_buttons()[i])):
+                                if self.get_buttons()[i][j].isHover(pos):
+                                    self.get_buttons()[i][j].crossout(self.win)
 
 
 
