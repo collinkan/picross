@@ -51,7 +51,7 @@ class PicrossGUI:
         for i in range(len(self.get_pzl().get_row_hints())):
             pygame.draw.rect(self.win, (0,204,136),(0, 302 + self.bdim*i, 298, self.bdim - 4), 0)
             for j in range(len(self.get_pzl().get_row_hints()[i])):
-                text = font.render(str(self.get_pzl().get_row_hints()[i][j]), 1, (0,0,0))
+                text = font.render(str(self.get_pzl().get_row_hints()[i][-(j+1)]), 1, (0,0,0))
                 self.win.blit(text, (298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1) + (round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) - text.get_width())/2, 
                 302 + self.bdim*i + (self.bdim - text.get_height())/2))
 
@@ -103,7 +103,7 @@ class PicrossGUI:
 
 
 
-pzl = Puzzle("SmileTest.png")
+pzl = Puzzle("Pickaxe.png")
 pg = PicrossGUI(pzl)
 pg.game_loop()
                 
