@@ -14,12 +14,13 @@ class Button:
         self.color = color
         self.outline = outline
         self.text = text
+        self.crossed = False
 
-    def draw(self, win: pygame.display) -> None:
+    def draw(self, win: pygame.display, textfont='freesansbold.ttf') -> None:
         pygame.draw.rect(win, self.outline, (self.x, self.y, self.width, self.height), 0)
         pygame.draw.rect(win, self.color, (self.x+2, self.y+2, self.width-4, self.height-4))
         if self.text != "":
-            font = pygame.font.Font('freesansbold.ttf', 40)
+            font = pygame.font.Font(textfont, 40)
             text = font.render(self.text, 1, self.outline)
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
