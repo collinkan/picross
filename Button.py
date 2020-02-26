@@ -14,6 +14,7 @@ class Button:
         self.color = color
         self.outline = outline
         self.text = text
+        self.selected = False
         self.crossed = False
 
     def draw(self, win: pygame.display, textfont='freesansbold.ttf') -> None:
@@ -25,8 +26,16 @@ class Button:
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
     def toggle(self) -> None:
-        if self.color == (0,0,0): self.color = (255,255,255)
-        elif self.color == (255,255,255): self.color = (0,0,0)
+        if self.selected: 
+            self.selected = False
+            self.color = (255,255,255)
+        elif not self.selected: 
+            self.selected = True
+            self.color = (0,0,0)
+
+    def crossout(self) -> None:
+        if not self.selected and not self.crossed: self.crossed = True
+        elif self.crossed: self.crossed = False
 
     def isHover(self, pos) -> bool:
         if (pos[0] > self.x and pos[0] < self.x + self.width
