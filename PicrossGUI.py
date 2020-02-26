@@ -3,6 +3,7 @@
 import pygame
 from Button import *
 from Puzzle import *
+import math
 
 class PicrossGUI:
 
@@ -10,15 +11,15 @@ class PicrossGUI:
         self.pzl = pzl
         self.win = pygame.display.set_mode((802,900))
         self.buttons = [[] for r in self.get_pzl().get_grid()]
+        self.bdim = 500 / len(self.get_pzl().get_grid())
         self.quit = Button(100,100,100,100,(200,0,0),(0,0,0), "Quit")
         self.bg = (102,255,204)
 
-        dim = 500 / len(self.get_pzl().get_grid())
         for i in range(len(self.get_pzl().get_grid())):
             for j in range(len(self.get_pzl().get_grid()[0])):
-                x = 300 + (dim * j)
-                y = 300 + (dim * i)
-                square = Button(x,y,dim,dim,(255,255,255),self.bg)
+                x = 300 + (self.bdim * j)
+                y = 300 + (self.bdim * i)
+                square = Button(x,y,self.bdim,self.bdim,(255,255,255),self.bg)
                 self.buttons[i].append(square)
         pygame.display.set_caption("Collin's Picross")
 
@@ -38,12 +39,20 @@ class PicrossGUI:
         self.quit.draw(self.win)
 
     def drawRowHints(self) -> None:
-        for i in range(len(self.get_buttons())):
-            pygame.draw.rect(self.win, (0,204,136), (0, 302 + self.get_buttons()[i][0].width*i, 298, self.get_buttons()[i][0].width - 4), 0)
+        font = pygame.font.Font('freesansbold.ttf', round(200 / len(self.get_pzl().get_grid())))
+        for i in range(len(self.get_pzl().get_row_hints())):
+            pygame.draw.rect(self.win, (0,204,136),(0, 302 + self.bdim*i, 298, self.bdim - 4), 0)
+            for j in range(len(self.get_pzl().get_row_hints()[i])):
+                text = font.render(str(self.get_pzl().get_row_hints()[i][j]), 1, (0,0,0))
+                self.win.blit(text, (298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1), 302 + self.bdim*i))
 
     def drawColHints(self) -> None:
+        font = pygame.font.Font('freesansbold.ttf', round(200 / len(self.get_pzl().get_grid())))
         for i in range(len(self.get_buttons())):
-            pygame.draw.rect(self.win, (0,204,136), (302 + self.get_buttons()[i][0].width*i, 0, self.get_buttons()[i][0].width - 4, 298), 0)
+            pygame.draw.rect(self.win, (0,204,136),(302 + self.bdim*i, 0, self.bdim - 4, 298), 0)
+            for j in range(len(self.get_pzl().get_col_hints()[i])):
+                text = font.render(str(self.get_pzl().get_col_hints()[i][j]), 1, (0,0,0))
+                self.win.blit(text, (302 + self.bdim*i, 298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1)))
 
     def updateWin(self) -> None:
         self.win.fill(self.bg)
