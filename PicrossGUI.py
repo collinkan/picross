@@ -39,11 +39,11 @@ class PicrossGUI:
                 self.get_buttons()[i][j].draw(self.win)
                 if self.get_buttons()[i][j].crossed:
                     pygame.draw.line(self.win, (75,75,75), 
-                    (self.get_buttons()[i][j].x+self.get_buttons()[i][j].width-2, self.get_buttons()[i][j].y+2),
-                    (self.get_buttons()[i][j].x+2, self.get_buttons()[i][j].y+self.get_buttons()[i][j].height-2), 3)
+                    (self.get_buttons()[i][j].x+self.get_buttons()[i][j].width-8, self.get_buttons()[i][j].y+8),
+                    (self.get_buttons()[i][j].x+8, self.get_buttons()[i][j].y+self.get_buttons()[i][j].height-8), 5)
                     pygame.draw.line(self.win, (75,75,75), 
-                    (self.get_buttons()[i][j].x+2, self.get_buttons()[i][j].y+2), 
-                    (self.get_buttons()[i][j].x+self.get_buttons()[i][j].width-2, self.get_buttons()[i][j].y+self.get_buttons()[i][j].height-2), 3)
+                    (self.get_buttons()[i][j].x+8, self.get_buttons()[i][j].y+8), 
+                    (self.get_buttons()[i][j].x+self.get_buttons()[i][j].width-8, self.get_buttons()[i][j].y+self.get_buttons()[i][j].height-8), 5)
         self.quit.draw(self.win)
 
 
@@ -104,7 +104,7 @@ class PicrossGUI:
 
 
 
-pzl = Puzzle("Pickaxe.png")
+pzl = Puzzle("Creeper.png")
 pg = PicrossGUI(pzl)
 pg.game_loop()
                 
