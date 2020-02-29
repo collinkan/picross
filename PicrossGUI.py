@@ -14,7 +14,7 @@ class PicrossGUI:
         self.bdim = 500 / len(self.get_pzl().get_grid())
         self.quit = Button(100,100,100,100,(200,0,0),(0,0,0), "Quit")
         self.bg = (102,255,204)
-        self.drag = False
+        self.done = False
 
         for i in range(len(self.get_pzl().get_grid())):
             for j in range(len(self.get_pzl().get_grid()[0])):
@@ -65,10 +65,10 @@ class PicrossGUI:
                 self.win.blit(text, (302 + self.bdim*i + (self.bdim - text.get_width())/2, 
                 298 - round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) * (j+1) + (round(298 / math.ceil(len(self.get_pzl().get_grid())/2)) - text.get_height())/2))
 
-    def updaateButtons(self, event, pos) -> None:
+    def updateButtons(self, event, pos) -> None:
         if event.button == 1:
             if self.quit.isHover(pos):
-                done = True
+                self.done = True
             for i in range(len(self.get_buttons())):
                 for j in range(len(self.get_buttons()[0])):
                             if (self.get_buttons()[i][j].isHover(pos)
@@ -88,9 +88,8 @@ class PicrossGUI:
         self.drawColHints()
 
     def game_loop(self) -> None:
-        done = False
 
-        while not done:
+        while not self.done:
             self.updateWin()
             pygame.display.update()
             for event in pygame.event.get():
@@ -98,10 +97,10 @@ class PicrossGUI:
 
                 if event.type == pygame.QUIT or self.get_pzl().solved():
                     pygame.quit()
-                    done = True
+                    self.done = True
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    self.updaateButtons(event, pos)
+                    self.updateButtons(event, pos)
 
 
 
